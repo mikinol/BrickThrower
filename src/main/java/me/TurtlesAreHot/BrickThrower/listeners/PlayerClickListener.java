@@ -122,6 +122,9 @@ public class PlayerClickListener implements Listener {
                             thrown.remove();
                             throwVector.multiply(0);
                             cancel();
+                        }else if(hit.getGameMode() == GameMode.SPECTATOR){
+                            // Skip a player who is in the spectators.
+                            continue;
                         }
                      }
 
