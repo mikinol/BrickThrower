@@ -29,11 +29,6 @@ public class Main extends JavaPlugin {
         getCommand("brickthrower").setExecutor(new BrickThrower());
     }
 
-    @Override
-    public void onDisable() {
-
-    }
-
     private void registerListeners() {
         PluginManager manager = this.getServer().getPluginManager();
         manager.registerEvents(new PlayerClickListener(), this);
