@@ -17,6 +17,11 @@
             <id>spigot-repo</id>
             <url>https://hub.spigotmc.org/nexus/content/repositories/snapshots/</url>
         </repository>
+        <repository>
+            <id>codemc-repo</id>
+            <url>https://repo.codemc.io/repository/maven-public/</url>
+            <layout>default</layout>
+        </repository>
     </repositories>
 
     <dependencies>
@@ -28,39 +33,10 @@
             <scope>provided</scope>
         </dependency>
         <dependency>
-            <groupId>lib</groupId>
-            <artifactId>library</artifactId>
-            <version>1.12.2</version>
-            <scope>system</scope>
-            <systemPath>${project.basedir}/lib/spigot-1.12.2.jar</systemPath>
-        </dependency>
-        <dependency>
-            <groupId>lib3</groupId>
-            <artifactId>library3</artifactId>
-            <version>1.11.2</version>
-            <scope>system</scope>
-            <systemPath>${project.basedir}/lib/spigot-1.11.2.jar</systemPath>
-        </dependency>
-        <dependency>
-            <groupId>lib4</groupId>
-            <artifactId>library4</artifactId>
-            <version>1.10.2</version>
-            <scope>system</scope>
-            <systemPath>${project.basedir}/lib/spigot-1.10.2.jar</systemPath>
-        </dependency>
-        <dependency>
-            <groupId>lib5</groupId>
-            <artifactId>library5</artifactId>
-            <version>1.9.4</version>
-            <scope>system</scope>
-            <systemPath>${project.basedir}/lib/spigot-1.9.4.jar</systemPath>
-        </dependency>
-        <dependency>
-            <groupId>lib6</groupId>
-            <artifactId>library6</artifactId>
-            <version>1.8.9</version>
-            <scope>system</scope>
-            <systemPath>${project.basedir}/lib/spigot-1.8.jar</systemPath>
+            <groupId>de.tr7zw</groupId>
+            <artifactId>item-nbt-api-plugin</artifactId>
+            <version>2.13.2-SNAPSHOT</version>
+            <scope>provided</scope>
         </dependency>
     </dependencies>
 </project>

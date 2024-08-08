@@ -1,12 +1,11 @@
 package me.TurtlesAreHot.BrickThrower;
 
+import de.tr7zw.nbtapi.NBT;
 import me.TurtlesAreHot.BrickThrower.commands.BrickThrower;
 import me.TurtlesAreHot.BrickThrower.listeners.*;
-import me.TurtlesAreHot.BrickThrower.version.*;
 import org.bukkit.Bukkit;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.entity.Player;
-import org.bukkit.event.inventory.PrepareItemCraftEvent;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.plugin.PluginManager;
 import org.bukkit.plugin.java.JavaPlugin;
@@ -142,57 +141,14 @@ public class Main extends JavaPlugin {
     }
 
     public static String getNBTData(ItemStack item, String key) {
-        String data = null;
-        switch(version) {
-            case "1.13":
-                data = NBT13.getNBTDataString(item, key);
-                break;
-            case "1.12":
-                data = NBT12.getNBTDataString(item, key);
-                break;
-            case "1.11":
-                data = NBT11.getNBTDataString(item, key);
-                break;
-            case "1.10":
-                data = NBT10.getNBTDataString(item, key);
-                break;
-            case "1.9":
-                data = NBT9.getNBTDataString(item, key);
-                break;
-            case "1.8":
-                data = NBT8.getNBTDataString(item, key);
-                break;
-            default:
-                data = NBT14.getNBTDataString(item, key);
-        }
-        return data;
+        String nbt_data = NBT.get(item, nbt -> (String) nbt.getString(key));
+        if(nbt_data.isEmpty()) return null;
+        else return nbt_data;
     }
 
     public static ItemStack setNBTData(ItemStack item, String key, String keyData) {
-        ItemStack data = null;
-        switch(version) {
-            case "1.13":
-                data = NBT13.setNBTData(item, key, keyData);
-                break;
-            case "1.12":
-                data = NBT12.setNBTData(item, key, keyData);
-                break;
-            case "1.11":
-                data = NBT11.setNBTData(item, key, keyData);
-                break;
-            case "1.10":
-                data = NBT10.setNBTData(item, key, keyData);
-                break;
-            case "1.9":
-                data = NBT9.setNBTData(item, key, keyData);
-                break;
-            case "1.8":
-                data = NBT8.setNBTData(item, key, keyData);
-                break;
-            default:
-                data = NBT14.setNBTData(item, key, keyData);
-        }
-        return data;
+        NBT.modify(item, nbt -> {nbt.setString(key, keyData);});
+        return item;
     }
 
     /**
