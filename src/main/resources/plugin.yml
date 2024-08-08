@@ -3,7 +3,7 @@ name: BrickThrower
 version: 2.1.0
 description: This plugin was created as a way to throw bricks!
 author: TurtlesAreHot
-api-version: 1.20
+api-version: 1.21
 commands:
   brickthrower:
     description: Displays information about the brickthrower, if you add 'get' as an argument it gives you bricks you can throw (requires brickthrower.get permission)!
