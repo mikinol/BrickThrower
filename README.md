@@ -17,7 +17,8 @@ There is now a new branch called "wip". This branch will be for any kind of upda
 # Patch Notes
 
 ## 2.1.0
-- 
+- NBT-API was used instead of standard NBT.
+- Renamed BrickThrower to BrickThrowerX
 - Updated native version to 1.21 (supporting 1.8 - 1.21)
 - Fixed player knockback in spectators.
 
