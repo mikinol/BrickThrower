@@ -15,6 +15,16 @@ If there is any requests for an update for new features I would not be against a
 There is now a new branch called "wip". This branch will be for any kind of update (bug patches, supporting new versions of minecraft, and documentation). Any change I make to the code will go to that branch. Any pull requests made that are accepted will also go to this branch. Once there is enough changes (which is under my discretion as to what constitutes as "enough") the wip branch will be merged into the main branch and I will release an update onto spigot (after testing of course). For any big changes to the plugin please make a suggestion on our discord server here: https://discord.gg/TyZM6ePB65
 
 # Patch Notes
+
+## 2.1.0
+- 
+- Updated native version to 1.21 (supporting 1.8 - 1.21)
+- Fixed player knockback in spectators.
+
+---
+
+# Old Patch Notes
+
 ## 2.0.0
 - Entire codebase was refactored as it was not very easy to read in some places and I felt many things needed to be moved around. Useless code was also removed.
 - People in creative mode no longer lose bricks from their inventory

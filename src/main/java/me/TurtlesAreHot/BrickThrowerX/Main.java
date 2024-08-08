@@ -1,8 +1,8 @@
-package me.TurtlesAreHot.BrickThrower;
+package me.TurtlesAreHot.BrickThrowerX;
 
 import de.tr7zw.nbtapi.NBT;
-import me.TurtlesAreHot.BrickThrower.commands.BrickThrower;
-import me.TurtlesAreHot.BrickThrower.listeners.*;
+import me.TurtlesAreHot.BrickThrowerX.commands.BrickThrower;
+import me.TurtlesAreHot.BrickThrowerX.listeners.*;
 import org.bukkit.Bukkit;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.entity.Player;
