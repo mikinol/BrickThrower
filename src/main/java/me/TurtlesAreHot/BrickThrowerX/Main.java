@@ -142,9 +142,7 @@ public class Main extends JavaPlugin {
     }
 
     public static String getNBTData(ItemStack item, String key) {
-        if(item == null || item.getData() == null ||
-                item.getData().getItemType() == Material.AIR ||
-                item.getAmount() == 0)
+        if(item == null || item.getAmount() == 0)
             return null;
 
         String nbt_data = NBT.get(item, nbt -> (String) nbt.getString(key));
