@@ -16,6 +16,9 @@ There is now a new branch called "wip". This branch will be for any kind of upda
 
 # Patch Notes
 
+## 2.1.1
+- Fixed null in console
+
 ## 2.1.0
 - NBT-API was used instead of standard NBT.
 - Renamed BrickThrower to BrickThrowerX

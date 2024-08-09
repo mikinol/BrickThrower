@@ -4,6 +4,7 @@ import de.tr7zw.nbtapi.NBT;
 import me.TurtlesAreHot.BrickThrowerX.commands.BrickThrower;
 import me.TurtlesAreHot.BrickThrowerX.listeners.*;
 import org.bukkit.Bukkit;
+import org.bukkit.Material;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
@@ -141,7 +142,11 @@ public class Main extends JavaPlugin {
     }
 
     public static String getNBTData(ItemStack item, String key) {
+        if(item == null || item.getData() == null || item.getData().getItemType() == Material.AIR)
+            return null;
+
         String nbt_data = NBT.get(item, nbt -> (String) nbt.getString(key));
+
         if(nbt_data.isEmpty()) return null;
         else return nbt_data;
     }
