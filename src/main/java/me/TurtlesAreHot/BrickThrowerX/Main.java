@@ -2,6 +2,7 @@ package me.TurtlesAreHot.BrickThrowerX;
 
 import de.tr7zw.nbtapi.NBT;
 import me.TurtlesAreHot.BrickThrowerX.commands.BrickThrower;
+import me.TurtlesAreHot.BrickThrowerX.commands.BrickThrowerXCompleter;
 import me.TurtlesAreHot.BrickThrowerX.listeners.*;
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
@@ -27,6 +28,7 @@ public class Main extends JavaPlugin {
         registerListeners();
 
         getCommand("brickthrower").setExecutor(new BrickThrower());
+        getCommand("brickthrower").setTabCompleter(new BrickThrowerXCompleter());
     }
 
     private void registerListeners() {
