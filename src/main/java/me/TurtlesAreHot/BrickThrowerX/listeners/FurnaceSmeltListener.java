@@ -13,9 +13,7 @@ public class FurnaceSmeltListener implements Listener {
     @EventHandler
     public void onBurn(FurnaceBurnEvent e) {
         Material blockType = e.getBlock().getType();
-        if(blockType != Material.FURNACE &&
-                (Main.getVersionNum() >= 14 && blockType != Material.BLAST_FURNACE) &&
-                (Main.getVersionNum() >= 14 && blockType != Material.SMOKER)) {
+        if(Main.getVersionNum() >= 14 && blockType != Material.FURNACE &&  blockType != Material.BLAST_FURNACE && blockType != Material.SMOKER) {
             return;
         }
         Furnace furnace = (Furnace) e.getBlock().getState();
