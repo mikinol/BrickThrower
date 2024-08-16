@@ -5,6 +5,7 @@ import me.TurtlesAreHot.BrickThrowerX.commands.BrickThrower;
 import me.TurtlesAreHot.BrickThrowerX.commands.BrickThrowerXCompleter;
 import me.TurtlesAreHot.BrickThrowerX.listeners.*;
 import org.bukkit.Bukkit;
+import org.bukkit.ChatColor;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.entity.Player;
@@ -129,6 +130,23 @@ public class Main extends JavaPlugin {
     // Gets default english language file
     public static FileConfiguration getDefaultEnglishLang() {
         return defaultEnglishLang;
+    }
+
+    // Gets phrase from language file
+    public static String getPhrase(String phrase) {
+        String phraseFromLang = lang.getString(phrase);
+
+        if (phraseFromLang == null) {
+            phraseFromLang = defaultLang.getString(phrase);
+        }
+        if (phraseFromLang == null) {
+            phraseFromLang = defaultEnglishLang.getString(phrase);
+        }
+        if (phraseFromLang == null) {
+            phraseFromLang = phrase;
+        }
+
+        return ChatColor.translateAlternateColorCodes('&', phraseFromLang);
     }
 
     // Gets Server version
