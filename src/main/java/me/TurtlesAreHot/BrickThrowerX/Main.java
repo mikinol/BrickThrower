@@ -15,8 +15,11 @@ import org.bukkit.plugin.PluginManager;
 import org.bukkit.plugin.java.JavaPlugin;
 
 import java.io.File;
+import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.nio.file.Files;
+import java.nio.file.StandardCopyOption;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -72,6 +75,13 @@ public class Main extends JavaPlugin {
         Plugin plugin = JavaPlugin.getPlugin(Main.class);
         config = plugin.getConfig();
 
+        File folder = new File(plugin.getDataFolder() + "/lang");
+        if (!folder.exists()) {
+            folder.mkdirs();
+        }
+
+        loadLang("lang/en.yml", folder + "/en.yml");
+
         String langPath = "/lang/" + config.getString("language") + ".yml";
         lang = YamlConfiguration.loadConfiguration(new File(plugin.getDataFolder() + langPath));
 
@@ -87,6 +97,17 @@ public class Main extends JavaPlugin {
             Main.defaultLang = YamlConfiguration.loadConfiguration(
                     new InputStreamReader(englishLang)
             );
+        }
+    }
+
+    private static void loadLang(String pathfrom, String pathto){
+        File langFile = new File(pathto);
+        if(!langFile.exists()) {
+            try {
+                Files.copy(JavaPlugin.getPlugin(Main.class).getResource(pathfrom), langFile.toPath(), StandardCopyOption.REPLACE_EXISTING);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
         }
     }
 
