@@ -1,0 +1,25 @@
+only_player_can_run: "Players can only run this command. (Might add reload support later)."
+non_supported_command: "Somehow you ran this command with a non supported command. How did we get here?"
+no_permission: "You must have the permission node: &cbrickthrower.%command% &6to perform this command."
+
+item_does_not_exist: "Item given doesn't exist in minecraft."
+item_not_in_config_allowed_list: "Item not in config allowed list."
+list_all_allowed_items: "/brickthrower list to list all allowed items."
+no_space_for_item: "You have no space for more items."
+
+reload_in_not_enabled: "Reload is not enabled in the config."
+successfully_reloaded: "BrickThrower has been reloaded."
+
+valid_materials_list: "Valid Materials:"
+valid_materials_item: "&c%material%"
+
+version: "&6BrickThrower &c v%version%"
+created_by: "&6Created By: &c + %authors%"
+description: "&c%description%"
+commands: "&6Commands:"
+parameter_legend: "&4 [] <- optional parameter <> <- required parameter"
+
+command_brickthrower: "&c/brickthrower &6- This command displays information about the plugin and what each command does."
+command_brickthrower_get: "&c/brickthrower get [material] &6- This command gives you bricks that you can throw."
+command_brickthrower_reload: "&c/brickthrower reload &6- This command reloads the config."
+command_brickthrower_list: "&c/brickthrower list &6- This command lists all of the materials you can use with the /brickthrower get command."
