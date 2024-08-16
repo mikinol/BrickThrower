@@ -27,13 +27,13 @@ public class BrickThrower implements CommandExecutor {
     public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
         if(!(sender instanceof Player)) {
             // Checking for player not sender.
-            sender.sendMessage("Players can only run this command. (Might add reload support later).");
+            sender.sendMessage(Main.getPhrase("only_player_can_run"));
             return false;
         }
 
         Player p = (Player) sender;
         if(!(label.equalsIgnoreCase("brickthrower")) && !(label.equalsIgnoreCase("brth"))) {
-            msgPlayer(p, "Somehow you ran this command with a non supported command. How did we get here?");
+            msgPlayer(p, Main.getPhrase("non_supported_command"));
             return false;
         }
 
@@ -81,8 +81,7 @@ public class BrickThrower implements CommandExecutor {
         }
         boolean perm = player.hasPermission("brickThrower." + command);
         if (!perm) {
-            msgPlayer(player, "You must have the permission node: " + ChatColor.RED +
-                    "brickthrower." + command + ChatColor.GOLD + " to perform this command.");
+            msgPlayer(player, Main.getPhrase("no_permission").replace("%command%", command));
         }
 
         return perm;
@@ -113,13 +112,13 @@ public class BrickThrower implements CommandExecutor {
             String arg2 = args[1];
             itemMaterial = Material.getMaterial(arg2.toUpperCase());
             if(itemMaterial == null) {
-                msgPlayer(player, "Item given doesn't exist in minecraft." +
-                        "/brickthrower list to list all allowed items.");
+                msgPlayer(player, Main.getPhrase("item_does_not_exist") +
+                        Main.getPhrase("list_all_allowed_items"));
                 return false;
             }
             if(!(items.contains(arg2.toUpperCase()))) {
-                msgPlayer(player, "Item not in config allowed list. " +
-                        "/brickthrower list to list all allowed items.");
+                msgPlayer(player, Main.getPhrase("item_not_in_config_allowed_list") +
+                        Main.getPhrase("list_all_allowed_items"));
                 return false;
             }
 
@@ -150,7 +149,7 @@ public class BrickThrower implements CommandExecutor {
          * Giving the player the items.
          */
         if(player.getInventory().firstEmpty() == -1) {
-            msgPlayer(player, "You have no space for more items.");
+            msgPlayer(player, Main.getPhrase("no_space_for_item"));
             return false;
         }
         player.getInventory().addItem(brick);
@@ -167,13 +166,13 @@ public class BrickThrower implements CommandExecutor {
             return false;
         }
         if(!(Main.getCon().getBoolean("reload-enabled"))) {
-            msgPlayer(player, "Reload is not enabled in the config.");
+            msgPlayer(player, Main.getPhrase("reload_in_not_enabled"));
             return false;
         }
 
         JavaPlugin.getPlugin(Main.class).reloadConfig();
         Main.reloadCon();
-        msgPlayer(player, "BrickThrower has been reloaded.");
+        msgPlayer(player, Main.getPhrase("successfully_reloaded"));
         return true;
     }
 
@@ -187,9 +186,9 @@ public class BrickThrower implements CommandExecutor {
             return false;
         }
 
-        msgPlayer(player, "Valid Materials:");
+        msgPlayer(player, Main.getPhrase("valid_materials_list"));
         for(String mat : Main.getCon().getStringList("items")) {
-            player.sendMessage(ChatColor.RED + mat);
+            player.sendMessage(Main.getPhrase("valid_materials_item").replace("%material%", mat));
         }
 
         return true;
@@ -202,19 +201,15 @@ public class BrickThrower implements CommandExecutor {
         // Pulling information from plugin.yml for this plugin
         PluginDescriptionFile pdf = JavaPlugin.getPlugin(Main.class).getDescription();
         // Doesn't use msgPlayer function since its a bunch of info (don't want spam)
-        player.sendMessage(ChatColor.GOLD + "BrickThrower " + ChatColor.RED + "v" + pdf.getVersion());
-        player.sendMessage(ChatColor.GOLD + "Created By: " + ChatColor.RED + "" + pdf.getAuthors().get(0));
-        player.sendMessage(ChatColor.RED + "" + pdf.getDescription());
-        player.sendMessage(ChatColor.GOLD + "Commands:");
-        player.sendMessage(ChatColor.DARK_RED + "[] <- optional parameter <> <- required parameter");
-        player.sendMessage(ChatColor.RED + "/brickthrower" + ChatColor.GOLD +
-                " - This command displays information about the plugin and what each command does.");
-        player.sendMessage(ChatColor.RED + "/brickthrower get [material]" + ChatColor.GOLD +
-                " - This command gives you bricks that you can throw.");
-        player.sendMessage(ChatColor.RED + "/brickthrower reload" + ChatColor.GOLD +
-                " - This command reloads the config.");
-        player.sendMessage(ChatColor.RED + "/brickthrower list" + ChatColor.GOLD +
-                " - This command lists all of the materials you can use with the /brickthrower get command.");
+        player.sendMessage(Main.getPhrase("version").replace("%version%", pdf.getVersion()));
+        player.sendMessage(Main.getPhrase("created_by").replace("%authors%", pdf.getAuthors().get(0)));
+        player.sendMessage(Main.getPhrase("description").replace("%description%", pdf.getDescription()));
+        player.sendMessage(Main.getPhrase("commands"));
+        player.sendMessage(Main.getPhrase("parameter_legend"));
+        player.sendMessage(Main.getPhrase("command_brickthrower"));
+        player.sendMessage(Main.getPhrase("command_brickthrower_get"));
+        player.sendMessage(Main.getPhrase("command_brickthrower_reload"));
+        player.sendMessage(Main.getPhrase("command_brickthrower_list"));
         return true;
     }
 }

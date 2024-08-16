@@ -5,18 +5,30 @@ import me.TurtlesAreHot.BrickThrowerX.commands.BrickThrower;
 import me.TurtlesAreHot.BrickThrowerX.commands.BrickThrowerXCompleter;
 import me.TurtlesAreHot.BrickThrowerX.listeners.*;
 import org.bukkit.Bukkit;
+import org.bukkit.ChatColor;
 import org.bukkit.configuration.file.FileConfiguration;
+import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
+import org.bukkit.plugin.Plugin;
 import org.bukkit.plugin.PluginManager;
 import org.bukkit.plugin.java.JavaPlugin;
 
+import java.io.File;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.nio.file.Files;
+import java.nio.file.StandardCopyOption;
 import java.util.ArrayList;
 import java.util.List;
 
 public class Main extends JavaPlugin {
 
     private static FileConfiguration config;
+    private static FileConfiguration lang;
+    private static FileConfiguration defaultLang;
+    private static FileConfiguration defaultEnglishLang;
     private static String version;
     private static int versionNum;
 
@@ -60,7 +72,43 @@ public class Main extends JavaPlugin {
     }
 
     public static void reloadCon() {
-        config = JavaPlugin.getPlugin(Main.class).getConfig();
+        Plugin plugin = JavaPlugin.getPlugin(Main.class);
+        config = plugin.getConfig();
+
+        File folder = new File(plugin.getDataFolder() + "/lang");
+        if (!folder.exists()) {
+            folder.mkdirs();
+        }
+
+        loadLang("lang/en.yml", folder + "/en.yml");
+
+        String langPath = "/lang/" + config.getString("language") + ".yml";
+        lang = YamlConfiguration.loadConfiguration(new File(plugin.getDataFolder() + langPath));
+
+        InputStream defaultLang = plugin.getResource(langPath);
+        if(defaultLang != null) {
+            Main.defaultLang = YamlConfiguration.loadConfiguration(
+                    new InputStreamReader(defaultLang)
+            );
+        }
+
+        InputStream englishLang = plugin.getResource("/lang/en.yml");
+        if(englishLang != null) {
+            Main.defaultLang = YamlConfiguration.loadConfiguration(
+                    new InputStreamReader(englishLang)
+            );
+        }
+    }
+
+    private static void loadLang(String pathfrom, String pathto){
+        File langFile = new File(pathto);
+        if(!langFile.exists()) {
+            try {
+                Files.copy(JavaPlugin.getPlugin(Main.class).getResource(pathfrom), langFile.toPath(), StandardCopyOption.REPLACE_EXISTING);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
     }
 
     public void reloadVersion() {
@@ -88,6 +136,38 @@ public class Main extends JavaPlugin {
     // Gets config file
     public static FileConfiguration getCon() {
         return config;
+    }
+
+    // Gets language file
+    public static FileConfiguration getLang() {
+        return lang;
+    }
+
+    // Gets default language file
+    public static FileConfiguration getDefaultLang() {
+        return defaultLang;
+    }
+
+    // Gets default english language file
+    public static FileConfiguration getDefaultEnglishLang() {
+        return defaultEnglishLang;
+    }
+
+    // Gets phrase from language file
+    public static String getPhrase(String phrase) {
+        String phraseFromLang = lang.getString(phrase);
+
+        if (phraseFromLang == null) {
+            phraseFromLang = defaultLang.getString(phrase);
+        }
+        if (phraseFromLang == null) {
+            phraseFromLang = defaultEnglishLang.getString(phrase);
+        }
+        if (phraseFromLang == null) {
+            phraseFromLang = phrase;
+        }
+
+        return ChatColor.translateAlternateColorCodes('&', phraseFromLang);
     }
 
     // Gets Server version
@@ -127,6 +207,7 @@ public class Main extends JavaPlugin {
         config.addDefault("allow-guis", false);
         config.addDefault("item-velocity-multiplier", 1.0D);
         config.addDefault("kb-velocity-multiplier", 1.0D);
+        config.addDefault("language", "en");
 
         config.options().copyDefaults(true);
         this.saveConfig();
