@@ -128,6 +128,7 @@ public class Main extends JavaPlugin {
         config.addDefault("allow-guis", false);
         config.addDefault("item-velocity-multiplier", 1.0D);
         config.addDefault("kb-velocity-multiplier", 1.0D);
+        config.addDefault("language", "en");
 
         config.options().copyDefaults(true);
         this.saveConfig();
