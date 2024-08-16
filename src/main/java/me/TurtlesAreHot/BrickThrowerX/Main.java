@@ -5,7 +5,6 @@ import me.TurtlesAreHot.BrickThrowerX.commands.BrickThrower;
 import me.TurtlesAreHot.BrickThrowerX.commands.BrickThrowerXCompleter;
 import me.TurtlesAreHot.BrickThrowerX.listeners.*;
 import org.bukkit.Bukkit;
-import org.bukkit.Material;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
