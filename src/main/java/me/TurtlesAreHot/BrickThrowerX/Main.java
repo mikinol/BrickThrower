@@ -106,7 +106,7 @@ public class Main extends JavaPlugin {
         config.addDefault("bricks-given", 10);
         config.addDefault("reload-enabled", true);
         config.addDefault("item-name", "Heavy Brick");
-        List<String> materials = new ArrayList<String>();
+        List<String> materials = new ArrayList<>();
         String default_item_mat = "BRICK";
 
         // Checking for versions 1.12 and below
