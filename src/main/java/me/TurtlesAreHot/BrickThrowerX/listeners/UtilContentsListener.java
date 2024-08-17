@@ -14,11 +14,11 @@ public class UtilContentsListener implements Listener {
     // Smithing needs its own class because it was added in 1.16
 
     public boolean eventUsesBrick(ItemStack[] contents) {
-        for(int i = 0; i < contents.length; i++) {
-            if(contents[i] == null) {
+        for (ItemStack content : contents) {
+            if (content == null) {
                 continue;
             }
-            if(Main.getNBTData(contents[i], "brickthrower_item") != null) {
+            if (Main.getNBTData(content, "brickthrower_item") != null) {
                 return true;
             }
         }
