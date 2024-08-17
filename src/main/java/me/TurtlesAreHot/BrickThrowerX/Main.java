@@ -94,7 +94,7 @@ public class Main extends JavaPlugin {
 
         InputStream englishLang = plugin.getResource("/lang/en.yml");
         if(englishLang != null) {
-            Main.defaultLang = YamlConfiguration.loadConfiguration(
+            Main.defaultEnglishLang = YamlConfiguration.loadConfiguration(
                     new InputStreamReader(englishLang)
             );
         }
