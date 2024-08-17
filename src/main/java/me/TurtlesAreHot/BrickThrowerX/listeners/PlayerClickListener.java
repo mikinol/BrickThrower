@@ -88,9 +88,7 @@ public class PlayerClickListener implements Listener {
             @Override
             public void run() {
                 if(disappearTime != 0) {
-                    /**
-                     * If this item disappears, it shouldn't try to hit an entity!
-                     */
+                    // If this item disappears, it shouldn't try to hit an entity!
                     Date currentTime = new Date();
                     if((currentTime.getTime() - dropTime.getTime()) / 1000 >= disappearTime) {
                         cancel();
