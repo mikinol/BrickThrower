@@ -275,11 +275,7 @@ public class Main extends JavaPlugin {
      * @return true if the server is 1.12 or below
      */
     public static boolean oldMaterials() {
-        if(versionNum <= 12) {
-            return true;
-        }
-
-        return false;
+        return versionNum <= 12;
     }
 
     /**
