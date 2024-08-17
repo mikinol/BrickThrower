@@ -40,11 +40,11 @@ public class BrickThrower implements CommandExecutor {
             return infoCmd(p);
         }
 
-        /**
+        /*
          * Switch case for the first argument.
          * This checks what command you are running.
          * Switches it to lower case so caps don't matter
-         **/
+         */
         switch(args[0].toLowerCase()) {
             case "get":
                 return getCmd(p, args);
@@ -97,7 +97,7 @@ public class BrickThrower implements CommandExecutor {
         }
         Material itemMaterial = null;
 
-        /**
+        /*
          * Assigning the material for the brick.
          * First checking for permissions for this though.
          */
@@ -132,9 +132,7 @@ public class BrickThrower implements CommandExecutor {
         }
 
 
-        /**
-         * Creating ItemStack for the item to give
-         */
+        // Creating ItemStack for the item to give
         ItemStack brick = new ItemStack(itemMaterial, Main.getCon().getInt("bricks-given"));
         ItemMeta brickMeta = brick.getItemMeta();
         brickMeta.setDisplayName(Main.getCon().getString("item-name"));
@@ -143,9 +141,7 @@ public class BrickThrower implements CommandExecutor {
         // Setting NBT data so plugin knows this is a BrickThrower item.
         brick = Main.setNBTData(brick, "brickthrower_item", "true");
 
-        /**
-         * Giving the player the items.
-         */
+        // Giving the player the items.
         if(player.getInventory().firstEmpty() == -1) {
             msgPlayer(player, Main.getPhrase("no_space_for_item"));
             return false;
@@ -192,6 +188,11 @@ public class BrickThrower implements CommandExecutor {
         return true;
     }
 
+    /**
+     * The /brickthrower info command
+     * @param player The player who executed the command
+     * @return Returns if the command ran
+     */
     public boolean infoCmd(Player player) {
         if(!(hasPermission(player, "info"))) {
             return false;

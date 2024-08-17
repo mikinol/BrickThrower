@@ -69,7 +69,6 @@ public class PlayerClickListener implements Listener {
             e.getItem().setAmount(itemHeld.getAmount() - 1);
         }
 
-
         Date dropTime = new Date();
 
         // Remove Thrown Entity from world
@@ -107,9 +106,8 @@ public class PlayerClickListener implements Listener {
                     }
                     LivingEntity livingEntity = (LivingEntity) entity;
                     if(livingEntity instanceof Player) {
-                        /**
-                         * Don't want to hit ourselves!
-                         */
+
+                        // Don't want to hit ourselves!
                         Player hit = (Player) livingEntity;
                         if(hit.getUniqueId().equals(player.getUniqueId())) {
                             continue;
@@ -136,9 +134,5 @@ public class PlayerClickListener implements Listener {
                 }
             }
         }.runTaskTimer(JavaPlugin.getPlugin(Main.class), 0, 0);
-
     }
-
-
-
 }

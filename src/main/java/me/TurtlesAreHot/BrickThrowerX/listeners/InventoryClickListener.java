@@ -7,8 +7,9 @@ import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.event.inventory.InventoryType;
 
 public class InventoryClickListener implements Listener {
-    // this event is for stonecutters, cartography tables, and looms.
-
+    /**
+     * This event is for stonecutters, cartography tables, and looms.
+     */
     @EventHandler
     public void onClick(InventoryClickEvent e) {
         InventoryType invType = e.getInventory().getType();

@@ -32,6 +32,11 @@ public class Main extends JavaPlugin {
     private static String version;
     private static int versionNum;
 
+    /**
+     * This method is called when the plugin is enabled.
+     * It is responsible for reloading the version, setting default configs,
+     * registering listeners, and registering the brickthrower command.
+     */
     @Override
     public void onEnable() {
         reloadVersion();
@@ -42,35 +47,47 @@ public class Main extends JavaPlugin {
         getCommand("brickthrower").setTabCompleter(new BrickThrowerXCompleter());
     }
 
+    /**
+     * Registers all listeners for the plugin.
+     * The listeners are only registered if the corresponding
+     * setting in the config file is enabled.
+     */
     private void registerListeners() {
         PluginManager manager = this.getServer().getPluginManager();
+
         manager.registerEvents(new PlayerClickListener(), this);
+
         if(!(config.getBoolean("allow-guis"))) {
             // This is when guis should not be able to use BrickThrower items.
             manager.registerEvents(new PrepareCraftListener(), this);
             manager.registerEvents(new EnchantListener(), this);
             manager.registerEvents(new FurnaceSmeltListener(), this);
             manager.registerEvents(new UtilContentsListener(), this);
+
             if(!(version.equals("1.8"))) {
                 // Fueling for Brewing doesn't exist in 1.8
                 manager.registerEvents(new BrewFuelListener(), this);
             }
+
             if(versionNum >= 16) {
                 // Smithing table was added in 1.16!
                 manager.registerEvents(new SmithingListener(), this);
             }
+
             if(versionNum >= 14) {
                 // stonecutters, cartography tables, loom tables were added in 1.14!
                 manager.registerEvents(new InventoryClickListener(), this);
             }
         }
+
         if(!(config.getBoolean("allow-interacts"))) {
             manager.registerEvents(new InteractEntityListener(), this);
         }
-
-
     }
 
+    /**
+     * Reloads the configuration and language files.
+     */
     public static void reloadCon() {
         Plugin plugin = JavaPlugin.getPlugin(Main.class);
         config = plugin.getConfig();
@@ -100,6 +117,12 @@ public class Main extends JavaPlugin {
         }
     }
 
+    /**
+     * Copies the language file from the jar to the plugin's data folder if
+     * the file does not already exist.
+     * @param pathfrom the path of the file in the jar
+     * @param pathto the path of the file in the plugin's data folder
+     */
     private static void loadLang(String pathfrom, String pathto){
         File langFile = new File(pathto);
         if(!langFile.exists()) {
@@ -111,6 +134,13 @@ public class Main extends JavaPlugin {
         }
     }
 
+    /**
+     * Reloads the version of the server by extracting it from {@link Bukkit#getVersion()}.
+     * This method is used to get the server version number and store it in the {@link Main#version} field.
+     * The version number is then used to check if certain events should be registered.
+     * <p>
+     * This method also sets the {@link Main#versionNum} field which is used to check if certain events should be registered.
+     */
     public void reloadVersion() {
         // garbage....
         String server_ver = Bukkit.getVersion();
@@ -133,27 +163,43 @@ public class Main extends JavaPlugin {
         }
     }
 
-    // Gets config file
+    /**
+     * Gets the config file.
+     * @return The config file.
+     */
     public static FileConfiguration getCon() {
         return config;
     }
 
-    // Gets language file
+    /**
+     * Gets the language file.
+     * @return The language file.
+     */
     public static FileConfiguration getLang() {
         return lang;
     }
 
-    // Gets default language file
+    /**
+     * Gets the default language file.
+     * @return The default language file.
+     */
     public static FileConfiguration getDefaultLang() {
         return defaultLang;
     }
 
-    // Gets default english language file
+    /**
+     * Gets the default english language file.
+     * @return The default english language file.
+     */
     public static FileConfiguration getDefaultEnglishLang() {
         return defaultEnglishLang;
     }
 
-    // Gets phrase from language file
+    /**
+     * Gets phrase from language file.
+     * @param phrase The phrase to get from the language file.
+     * @return The phrase from the language file.
+     */
     public static String getPhrase(String phrase) {
         String phraseFromLang = lang.getString(phrase);
 
@@ -170,14 +216,23 @@ public class Main extends JavaPlugin {
         return ChatColor.translateAlternateColorCodes('&', phraseFromLang);
     }
 
-    // Gets Server version
+    /**
+     * Gets the server version.
+     * @return The server version.
+     */
     public static String getServerVersion() {
         return version;
     }
 
-    // Gets server version number (number after "1.")
+    /**
+     * Gets server version number (number after "1.")
+     * @return Server version number
+     */
     public static int getVersionNum() { return versionNum; }
 
+    /**
+     * Adds default values of config
+     */
     public void setDefaultConfigs() {
         this.saveDefaultConfig(); // Creates config.yml if it doesn't exist.
         config = this.getConfig();
@@ -215,6 +270,10 @@ public class Main extends JavaPlugin {
 
     }
 
+    /**
+     * Checks if the server has old materials (1.12 or below)
+     * @return true if the server is 1.12 or below
+     */
     public static boolean oldMaterials() {
         if(versionNum <= 12) {
             return true;
@@ -223,6 +282,12 @@ public class Main extends JavaPlugin {
         return false;
     }
 
+    /**
+     * Gets NBT data from an item.
+     * @param item the itemstack to get the NBT data
+     * @param key the key to get data
+     * @return the NBT data or null if it doesn't exist
+     */
     public static String getNBTData(ItemStack item, String key) {
         if(item == null || item.getAmount() == 0)
             return null;
@@ -233,6 +298,13 @@ public class Main extends JavaPlugin {
         else return nbt_data;
     }
 
+    /**
+     * Sets NBT data from an item.
+     * @param item the itemstack to set the NBT data
+     * @param key the key to set data
+     * @param keyData the data to set
+     * @return the itemstack with the NBT data
+     */
     public static ItemStack setNBTData(ItemStack item, String key, String keyData) {
         NBT.modify(item, nbt -> {nbt.setString(key, keyData);});
         return item;

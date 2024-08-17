@@ -11,7 +11,14 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 public class BrickThrowerXCompleter implements TabCompleter {
-    @Override
+    /**
+     * This is called when a player types a command and presses TAB.
+     * @param sender The entity that pressed TAB (can be console or a player).
+     * @param command The command that was sent
+     * @param label The label for the command
+     * @param args arguments for the command.
+     * @return The list of variants of commands.
+     */
     public List<String> onTabComplete(CommandSender sender, Command command, String label, String[] args) {
         if (args.length == 1) {
             return filterOptions(Arrays.asList("get", "reload", "list"), args[0]);
@@ -24,6 +31,12 @@ public class BrickThrowerXCompleter implements TabCompleter {
         return new ArrayList<>();
     }
 
+    /**
+     * Filters the given list of options based on the input given.
+     * @param options The list of options to filter.
+     * @param input The input to filter by.
+     * @return The filtered list.
+     */
     private List<String> filterOptions(List<String> options, String input) {
         return options.stream()
                 .filter(option -> option.toLowerCase().startsWith(input.toLowerCase()))
