@@ -1,7 +1,6 @@
 package me.TurtlesAreHot.BrickThrowerX.commands;
 
 import me.TurtlesAreHot.BrickThrowerX.Main;
-import org.bukkit.ChatColor;
 import org.bukkit.Material;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
@@ -64,8 +63,7 @@ public class BrickThrower implements CommandExecutor {
      * @param message The message to send.
      */
     public void msgPlayer(Player p, String message) {
-        p.sendMessage(ChatColor.GOLD + "" + ChatColor.BOLD +
-                "[BrickThrower] " + ChatColor.RED + message);
+        p.sendMessage(Main.getPhrase("msg_player").replace("%message%", message));
     }
 
     /**
