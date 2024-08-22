@@ -36,7 +36,12 @@ public class PlayerClickListener implements Listener {
             return;
         }
 
-        if ((Main.getNBTData(itemHeld, "brickthrower_item") == null)) {
+        if(!Main.getCon().getStringList("items").contains(itemHeld.getType().name().toUpperCase())) {
+            // Item is not a brick
+            return;
+        }
+
+        if (!Main.getCon().getBoolean("allow-throw-without-nbt-tag") && Main.getNBTData(itemHeld, "brickthrower_item") == null) {
             // Item not a brickthrower, we don't care.
             return;
         }

@@ -263,6 +263,7 @@ public class Main extends JavaPlugin {
         config.addDefault("item-velocity-multiplier", 1.0D);
         config.addDefault("kb-velocity-multiplier", 1.0D);
         config.addDefault("language", "en");
+        config.addDefault("allow-throw-without-nbt-tag", false);
 
         config.options().copyDefaults(true);
         this.saveConfig();
