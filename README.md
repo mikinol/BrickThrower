@@ -10,7 +10,7 @@ There is now a new branch called "wip". This branch will be for any kind of upda
 # Patch Notes
 
 ## 2.1.5
-- Added option to set whether to be given a special command and have a specific NBT tag
+- Added the ability to specify in the config whether an item must be gived with the command /brickthrower get
 - Fixed a bug when the placeholder for BrickThrower messages did not work
 - Added russian translation to BrickThrower
 
