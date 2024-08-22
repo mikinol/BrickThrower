@@ -24,4 +24,4 @@ command_brickthrower_get: "&c/brickthrower get [material] &6- This command gives
 command_brickthrower_reload: "&c/brickthrower reload &6- This command reloads the config."
 command_brickthrower_list: "&c/brickthrower list &6- This command lists all of the materials you can use with the /brickthrower get command."
 
-msg_player: "&6&l[BrickThrower] &cmessage"
+msg_player: "&6&l[BrickThrower] &c%message%"

@@ -24,4 +24,4 @@ command_brickthrower_get: "&c/brickthrower get [material] &6- Эта коман�
 command_brickthrower_reload: "&c/brickthrower reload &6- Эта команда перезагружает конфиг."
 command_brickthrower_list: "&c/brickthrower list &6- Эта команда показывает все материалы, которые вы можете использовать с командой /brickthrower get."
 
-msg_player: "&6&l[BrickThrower] &cmessage"
+msg_player: "&6&l[BrickThrower] &c%message%"
