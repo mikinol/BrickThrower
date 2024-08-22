@@ -1,0 +1,27 @@
+only_player_can_run: "Только игроки могут использовать эту команду. (Возможно будет добавлена поддержка перезагрузки)."
+non_supported_command: "Кажется вы выполнили эту команду с неподдерживаемым названием. Как вы это сделали?"
+no_permission: "Вы должны иметь разрешение: &cbrickthrower.%command% &6для выполнения этой команды."
+
+item_does_not_exist: "Предмет не существует в Minecraft."
+item_not_in_config_allowed_list: "Предмет не в списке допустимых."
+list_all_allowed_items: "/brickthrower list для списка всех допустимых предметов."
+no_space_for_item: "У вас нет места для большого количества предметов."
+
+reload_in_not_enabled: "Перезагрузка не включена в конфиге."
+successfully_reloaded: "BrickThrower был перезагружен."
+
+valid_materials_list: "Возможные материалы:"
+valid_materials_item: "&c%material%"
+
+version: "&6BrickThrower &cv%version%"
+created_by: "&6Создатели: &c%authors%"
+description: "&c%description%"
+commands: "&6Команды:"
+parameter_legend: "&4 [] <- необязательный параметр <> <- обязательный параметр"
+
+command_brickthrower: "&c/brickthrower &6- Эта команда показывает информацию о плагине и что каждая команда делает."
+command_brickthrower_get: "&c/brickthrower get [material] &6- Эта команда дает вам кирпичи, которые вы можете бросать."
+command_brickthrower_reload: "&c/brickthrower reload &6- Эта команда перезагружает конфиг."
+command_brickthrower_list: "&c/brickthrower list &6- Эта команда показывает все материалы, которые вы можете использовать с командой /brickthrower get."
+
+msg_player: "&6&l[BrickThrower] &cmessage"
