@@ -243,7 +243,6 @@ public class Main extends JavaPlugin {
     public void setDefaultConfigs() {
         this.saveDefaultConfig(); // Creates config.yml if it doesn't exist.
         config = this.getConfig();
-        config.addDefault("requires-command", true);
         config.addDefault("bricks-given", 10);
         config.addDefault("reload-enabled", true);
         config.addDefault("item-name", "Heavy Brick");
