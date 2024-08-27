@@ -1,10 +1,17 @@
-# BrickThrower v2.1.5 Source
+# BrickThrower v2.2.0
 
 BrickThrower is a simple plugin for Minecraft Servers where you can throw bricks with right click.
 
 If there is any requests for an update for new features I would not be against adding stuff if people want it.
 
 # Patch Notes
+
+## 2.2.0
+- NBTAPI is not required to run
+- Changed configuration of plugin
+- Fixed translation problems
+
+### A VERSIONS BEFORE 2.2.0 MAY NOT WORK STABLE
 
 ## 2.1.5
 - Added the ability to specify in the config whether an item must be gived with the command /brickthrower get
