@@ -64,7 +64,7 @@ public class Main extends JavaPlugin {
 
         manager.registerEvents(new PlayerClickListener(), this);
 
-        if(!(config.getBoolean("allow-guis")) && !(config.getBoolean("allow-throw-without-nbt-tag"))) {
+        if(!(config.getBoolean("allow-guis-with-nbt-item")) && !(config.getBoolean("allow-throw-without-nbt-tag"))) {
             // This is when guis should not be able to use BrickThrower items.
             manager.registerEvents(new PrepareCraftListener(), this);
             manager.registerEvents(new EnchantListener(), this);
@@ -266,7 +266,7 @@ public class Main extends JavaPlugin {
         config.addDefault("item-disappear-time", 3); // time until the item on the ground disappears. Put 0 to disable and allow pickup of the item.
         config.addDefault("item-damage", 4.0D);
         config.addDefault("allow-interacts", false);
-        config.addDefault("allow-guis", false);
+        config.addDefault("allow-guis-with-nbt-item", false);
         config.addDefault("item-velocity-multiplier", 1.0D);
         config.addDefault("kb-velocity-multiplier", 1.0D);
         config.addDefault("language", "en");
