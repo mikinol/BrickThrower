@@ -41,6 +41,13 @@ public class Main extends JavaPlugin {
     public void onEnable() {
         reloadVersion();
         setDefaultConfigs();
+
+        if(!config.getBoolean("allow-throw-without-nbt-tag") && !Bukkit.getPluginManager().isPluginEnabled("NBTAPI")) {
+            this.getLogger().severe("BrickThrowerX needs NBTAPI to use bricks with nbt, but it is not enabled. Disabling plugin.");
+            Bukkit.getPluginManager().disablePlugin(this);
+            return;
+        }
+
         registerListeners();
 
         getCommand("brickthrower").setExecutor(new BrickThrower());
@@ -57,7 +64,7 @@ public class Main extends JavaPlugin {
 
         manager.registerEvents(new PlayerClickListener(), this);
 
-        if(!(config.getBoolean("allow-guis"))) {
+        if(!(config.getBoolean("allow-guis")) && !(config.getBoolean("allow-throw-without-nbt-tag"))) {
             // This is when guis should not be able to use BrickThrower items.
             manager.registerEvents(new PrepareCraftListener(), this);
             manager.registerEvents(new EnchantListener(), this);

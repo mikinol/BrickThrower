@@ -4,29 +4,31 @@ import me.TurtlesAreHot.BrickThrowerX.Main;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerInteractEntityEvent;
+import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.PlayerInventory;
 
 public class InteractEntityListener implements Listener {
 
     @EventHandler
     public void onPlayerInteractEntity(PlayerInteractEntityEvent e) {
-        PlayerInventory pi = e.getPlayer().getInventory();
-        if(!(Main.getServerVersion().equals("1.8"))) {
-            if(pi.getItemInOffHand() == null) {
-                // Sometimes this is air
-                return;
-            }
-            if (Main.getNBTData(pi.getItemInOffHand(), "brickthrower_item") != null) {
-                e.setCancelled(true);
-            }
+        PlayerInventory inventory = e.getPlayer().getInventory();
+        ItemStack item = (Main.getServerVersion().equals("1.8"))
+                ? inventory.getItem(inventory.getHeldItemSlot())
+                : inventory.getItemInOffHand();
 
-        }
-
-        if(pi.getItem(pi.getHeldItemSlot()) == null) {
+        if(item == null) {
+            // Sometimes this is air
             return;
         }
-        if(Main.getNBTData(pi.getItem(pi.getHeldItemSlot()), "brickthrower_item") != null) {
-            e.setCancelled(true);
+
+        if(Main.getCon().getBoolean("allow-throw-without-nbt-tag")) {
+            if (Main.getCon().getStringList("items").contains(item.getType().name().toUpperCase())) {
+                e.setCancelled(true);
+            }
+        }else {
+            if (Main.getNBTData(item, "brickthrower_item") != null) {
+                e.setCancelled(true);
+            }
         }
     }
 }

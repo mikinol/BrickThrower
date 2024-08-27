@@ -4,7 +4,7 @@ version: 2.1.5
 description: This plugin was created as a way to throw bricks!
 author: TurtlesAreHot, mikinol
 api-version: 1.21
-depend: [NBTAPI]
+softdepend: [NBTAPI]
 
 commands:
   brickthrower:
