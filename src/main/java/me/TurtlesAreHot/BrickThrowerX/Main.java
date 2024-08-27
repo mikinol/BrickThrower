@@ -105,6 +105,7 @@ public class Main extends JavaPlugin {
         }
 
         loadLang("lang/en.yml", folder + "/en.yml");
+        loadLang("lang/ru.yml", folder + "/ru.yml");
 
         String langPath = "/lang/" + config.getString("language") + ".yml";
         lang = YamlConfiguration.loadConfiguration(new File(plugin.getDataFolder() + langPath));
