@@ -210,7 +210,7 @@ public class BrickThrower implements CommandExecutor {
         player.sendMessage(Main.getPhrase("parameter_legend"));
         player.sendMessage(Main.getPhrase("command_brickthrower"));
         player.sendMessage(Main.getPhrase("command_brickthrower_get"));
-        player.sendMessage(Main.getPhrase("command_brickthrower_reload"));
+        if(Main.getCon().getBoolean("reload-enabled")) player.sendMessage(Main.getPhrase("command_brickthrower_reload"));
         player.sendMessage(Main.getPhrase("command_brickthrower_list"));
         return true;
     }
