@@ -14,10 +14,9 @@ import org.bukkit.plugin.Plugin;
 import org.bukkit.plugin.PluginManager;
 import org.bukkit.plugin.java.JavaPlugin;
 
-import java.io.File;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
+import java.io.*;
+import java.net.HttpURLConnection;
+import java.net.URL;
 import java.nio.file.Files;
 import java.nio.file.StandardCopyOption;
 import java.util.ArrayList;
@@ -49,9 +48,42 @@ public class Main extends JavaPlugin {
         }
 
         registerListeners();
+        checkPluginVersion();
 
         getCommand("brickthrower").setExecutor(new BrickThrower());
         getCommand("brickthrower").setTabCompleter(new BrickThrowerXCompleter());
+    }
+
+    private void checkPluginVersion() {
+        try {
+            // URL к вашему файлу с последним релизом на GitHub
+            URL url = new URL("https://api.github.com/repos/mikinol/BrickThrowerX/releases/latest");
+            HttpURLConnection connection = (HttpURLConnection) url.openConnection();
+            connection.setRequestMethod("GET");
+            connection.setRequestProperty("User-Agent", "Mozilla/5.0");
+
+            BufferedReader in = new BufferedReader(new InputStreamReader(connection.getInputStream()));
+            String inputLine;
+            StringBuilder content = new StringBuilder();
+
+            while ((inputLine = in.readLine()) != null) {
+                content.append(inputLine);
+            }
+
+            in.close();
+            connection.disconnect();
+
+
+            String latestVersion = content.toString().split("\"tag_name\":\"")[1].split("\"")[0];
+            if (!this.getDescription().getVersion().equals(latestVersion)) {
+                getLogger().info("New update available: " + latestVersion);
+            } else {
+                getLogger().info("Your plugin is up to date.");
+            }
+
+        } catch (Exception e) {
+            getLogger().warning("Failed to check for updates: " + e.getMessage());
+        }
     }
 
     /**
