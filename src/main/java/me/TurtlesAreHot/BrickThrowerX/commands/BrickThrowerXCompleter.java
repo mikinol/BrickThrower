@@ -21,7 +21,7 @@ public class BrickThrowerXCompleter implements TabCompleter {
      */
     public List<String> onTabComplete(CommandSender sender, Command command, String label, String[] args) {
         if (args.length == 1) {
-            List<String> options = Arrays.asList("get", "list");
+            List<String> options = new ArrayList<>(Arrays.asList("get", "list"));
             if(Main.getCon().getBoolean("reload-enabled")) options.add("reload");
             return filterOptions(options, args[0]);
         }
