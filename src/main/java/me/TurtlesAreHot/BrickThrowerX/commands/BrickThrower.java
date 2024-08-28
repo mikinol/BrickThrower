@@ -1,6 +1,7 @@
 package me.TurtlesAreHot.BrickThrowerX.commands;
 
 import me.TurtlesAreHot.BrickThrowerX.Main;
+import org.bukkit.Bukkit;
 import org.bukkit.Material;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
@@ -138,8 +139,10 @@ public class BrickThrower implements CommandExecutor {
         brickMeta.setDisplayName(Main.getCon().getString("item-name"));
         brick.setItemMeta(brickMeta);
 
-        // Setting NBT data so plugin knows this is a BrickThrower item.
-        brick = Main.setNBTData(brick, "brickthrower_item", "true");
+        if(Bukkit.getPluginManager().isPluginEnabled("NBTAPI")) {
+            // Setting NBT data so plugin knows this is a BrickThrower item.
+            brick = Main.setNBTData(brick, "brickthrower_item", "true");
+        }
 
         // Giving the player the items.
         if(player.getInventory().firstEmpty() == -1) {
