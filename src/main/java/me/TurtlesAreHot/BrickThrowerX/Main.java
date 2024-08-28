@@ -4,6 +4,7 @@ import de.tr7zw.nbtapi.NBT;
 import me.TurtlesAreHot.BrickThrowerX.commands.BrickThrower;
 import me.TurtlesAreHot.BrickThrowerX.commands.BrickThrowerXCompleter;
 import me.TurtlesAreHot.BrickThrowerX.listeners.*;
+import org.bstats.bukkit.Metrics;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.configuration.file.FileConfiguration;
@@ -49,6 +50,7 @@ public class Main extends JavaPlugin {
 
         registerListeners();
         checkPluginVersion();
+        new Metrics(this, 23210);
 
         getCommand("brickthrower").setExecutor(new BrickThrower());
         getCommand("brickthrower").setTabCompleter(new BrickThrowerXCompleter());
