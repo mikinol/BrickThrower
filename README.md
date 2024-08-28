@@ -6,6 +6,13 @@ If there is any requests for an update for new features I would not be against a
 
 # Patch Notes
 
+## 2.2.2
+- Automatically check for updates
+- Fixed brickthrower get not working without NBT-API
+- Availability of the reload command is not written when the command is disabled
+- Added bStats metrics https://bstats.org/plugin/bukkit/BrickThrowerX/23210
+- Plugin released on modrinth https://modrinth.com/plugin/brickthrowerx
+
 ## 2.2.0
 - NBTAPI is not required to run
 - Changed configuration of plugin
