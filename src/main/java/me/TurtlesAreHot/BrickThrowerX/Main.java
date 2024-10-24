@@ -58,7 +58,6 @@ public class Main extends JavaPlugin {
 
     private void checkPluginVersion() {
         try {
-            // URL к вашему файлу с последним релизом на GitHub
             URL url = new URL("https://api.github.com/repos/mikinol/BrickThrowerX/releases/latest");
             HttpURLConnection connection = (HttpURLConnection) url.openConnection();
             connection.setRequestMethod("GET");
